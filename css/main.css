@@ -1,0 +1,67 @@
+/*flag icon at the beginning of the navbar*/
+#icon-navbar {
+    height:40px;
+    width: auto;
+    display: block;
+}
+
+/*navigation bar*/
+.navbar {
+
+    background-color: #213f5b;
+    border-color: #E7E7E7;
+}
+
+/*hovering over an item in the navigation bar*/
+.navbar .navbar-nav li a:hover {
+    background-color:#071344;
+    color: #ffffff;
+    border-radius:5px;
+ }
+
+ /*carousel text*/
+.carousel-content {
+    position: absolute;
+    top: 380px;
+    left: 220px;
+    z-index: 20;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  }
+
+ /*the slogan over the carousel*/
+.slogan {
+    -webkit-text-stroke: 0.3px black;
+    position: relative;
+    color: white; 
+    left: 140px;
+    top: -100px;
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 50px; 
+    font-weight: bold; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    transform: translate(-50%, -50%);
+  }
+
+/*the text right below the slogan*/
+.subslogan {
+    -webkit-text-stroke: 0.3px black;
+    color: white; 
+    position: relative;
+    left: 220px;
+    top: -120px;
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 30px; 
+    font-weight: 300; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    transform: translate(-50%, -50%);
+}
+
+/*"Book a Tour" button*/
+.book_btn {
+    position: relative;
+    left: -40px;
+    top: -120px;
+}
