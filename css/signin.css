@@ -4,8 +4,7 @@
 }
 
 body {
-    background: #213f5b;
-    background: linear-gradient(to right, #213f5b, rgb(1, 36, 82));
+    background: url(../img/lebanon-signup-background.jpg);
 }
 
 .card-signin {
