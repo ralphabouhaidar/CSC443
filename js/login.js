@@ -3,7 +3,12 @@ $(document).ready(function(){
     /*If signup button is clicked, redirect to signup page*/
     $("#signup_btn").click(function(){
         window.location.replace("../signup/signup.html")
-    })
+    });
+
+    /*If go back button is clicked, redirect to home page */
+    $("#home_btn").click(function(){
+        window.location.replace("../index.php")
+    });
     
     /*If sign in button is clicked, the email and password are verified through an AJAX Post request */
     $("#signin_btn").click(function(){

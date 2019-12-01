@@ -1,4 +1,7 @@
+<!-- NOTE: SHOULD ALSO SET SESSION VARIABLE FOR NAME -->
+
 <?php
+session_start();
 require("../database/connection.php");
 
 if(!isset($_POST["email"]) || !isset($_POST["password"]))
@@ -19,7 +22,7 @@ else
     $pass = addslashes($pass);
 
     /*query that searches for user with matching email, and returns table containing password*/
-    $sql = "SELECT u.password FROM Users u WHERE username=\"".$email."\"";
+    $sql = "SELECT c.password FROM Customers c WHERE username=\"".$email."\"";
     $result=$connection->query($sql);
 
     if($result->num_rows > 0) /*if the query returns a non-empty result*/
@@ -28,7 +31,10 @@ else
 
         /*Verify password against hashed password, if method returns true, user is signed in*/
         if (password_verify($pass, $row["password"]))
+        {
             echo "true";  
+            $_SESSION["email"] = $email;
+        }
             
         /*Password is not correct*/
         else

@@ -12,7 +12,7 @@ else
     $result = "success";
 
     /*Checks if the email is in the correct format*/
-    if(!preg_match("/^[a-zA-Z0-9_-]+@[a-zA-Z]+[.][a-zA-Z]{2,3}$/", $email))
+    if(!preg_match("/^[a-zA-Z0-9_.-]+@[a-zA-Z]+[.][a-zA-Z]{2,3}$/", $email))
     {
         $result = "Wrong email format.";
     }

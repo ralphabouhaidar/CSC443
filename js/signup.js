@@ -9,6 +9,12 @@ $(document).ready(function(){
     $('#inputPassword').popover({title:'Password requirements' ,placement:'right'}).blur(function () {
         $(this).popover('hide')});
 
+    /*Makes sure the name and last name input fields is stringly a string of letters */
+    $('.alphaonly').bind('keyup blur',function(){ 
+        var node = $(this);
+        node.val(node.val().replace(/[^a-z ]/i,'') ); }
+    );
+
     /*Makes sure the email and password are in the correct format*/
     $(".specificFormat").keyup(function(){
         var user = $("#inputEmail").val();

@@ -6,6 +6,8 @@ if(!isset($_POST["email"]) || !isset($_POST["firstname"]) || !isset($_POST["last
     exit("Terminated.");
 }
 
+$telephone = null;
+
 if(isset($_POST["telephone"]))
 {
     $telephone = $_POST["telephone"];
@@ -17,11 +19,27 @@ $lastname = $_POST["lastname"];
 $pass = $_POST["password"];
 $pass2 = $_POST["password2"];
 
+/*makes sure that name and last name are strictly letters */
+if(!preg_match("/^[a-z]$/i", $firstname) || !preg_match("/^[a-z]$/i", $lastname))
+{
+    exit();
+}
+
+if($pass != $pass2)
+{
+    exit();
+}
+
 /*to avoid SQL injection*/
 $email = addslashes($email);
+$firstname = addslashes($firstname);
+$lastname = addslashes($lastname);
+$pass = password_hash($pass, PASSWORD_DEFAULT);
 
-$pass = addslashes($pass);
-$pass2 = addslashes($pass2);
+/*query that inserts the user's info into the database with the correct information*/
+$sql = "QUERY HERE";
+$result=$connection->query($sql);
 
+header("Location: tours.php");
 
 ?>

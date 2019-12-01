@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<?php 
+session_start();
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,31 +56,47 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
               </li>
+              
 
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
               </li>
             </ul>
+
+            
 
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
 
+            <!--CHECKS IF USER IS LOGGED IN TO SEE WHETHER TO DISPLAY LOG IN BUTTON OR NOT-->
+          <?php if (isset($_SESSION["email"]) )
+                { ?>
+
+                <ul class="navbar-nav ml-sm-0">   
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <?= '$_SESSION["name"]' ?>
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+                </li>
+                </ul>
+
+             <!--IF USER IS NOT LOGGED IN-->
+                <?} 
+                else
+                { ?>
             <form class="form-inline my-2 my-lg-0">
                  <a href="login/login.html"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
             </form>
+                  <?}?>
           </div>
         </nav>
     <!-- END OF NAVIGATION BAR-->
@@ -95,8 +116,8 @@
             <div class="carousel-inner">
 
                 <div class="carousel-content">
-                        <h1 class="slogan">Relax… You’re with us! <br> We make it simple.</h1>
-                        <h3 class="subslogan"> Visit Lebanon with the click of a button. <br> </h3>
+                        <h1 class="slogan col-sm-12 text-sm-left">Relax… You’re with us! <br> We make it simple.</h1>
+                        <h3 class="subslogan col-sm-12 text-sm-left"> Visit Lebanon with the click of a button. <br> </h3>
                       <button type="button" class="book_btn btn btn-info d-md-block">Book a tour</button>
                 </div>
 
