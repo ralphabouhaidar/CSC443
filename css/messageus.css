@@ -1,0 +1,15 @@
+body{
+    background: url(../img/message-us-background.jpg);
+    overflow-x: hidden;
+}
+
+.header {
+    color: rgb(255, 255, 255);
+    font-size: 27px;
+    padding: 10px;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}

@@ -10,6 +10,8 @@
 
     background-color: #213f5b;
     border-color: #E7E7E7;
+    border-radius: 3px;
+    margin-bottom: 5px;
 }
 
 /*hovering over an item in the navigation bar*/
@@ -64,4 +66,17 @@
     position: relative;
     left: -40px;
     top: -120px;
+}
+
+/*footer*/
+.page-footer {
+    background-color: #213f5b;
+    color: white; 
+}
+
+
+body {
+    background-color: #213f5b;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }

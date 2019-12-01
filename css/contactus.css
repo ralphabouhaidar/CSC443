@@ -1,0 +1,40 @@
+
+
+body {
+    background-image: url(../img/message-us-background.jpg);
+    overflow-x: hidden;
+}
+
+.cardimg1 {
+    width: 20%;
+    height: 25%;
+    margin-left: 160px;
+    margin-top: 20px;
+}
+
+.cardimg2 {
+    width: 20%;
+    height: 25%;
+    margin-left: 160px;
+    margin-top: 20px;
+}
+
+#btt_1{
+    background-color: #008CBA;
+border-radius: 5px;
+    border-color:#008CBA;
+    font-weight: bold;
+}
+#btt_1:hover{
+    background-color: gray;
+}
+#btt_2:hover{
+    background-color: gray;
+    
+}
+#btt_2{
+    background-color: #008CBA;
+    border-radius: 5px;
+    border-color:#008CBA;
+    font-weight: bold;
+}
