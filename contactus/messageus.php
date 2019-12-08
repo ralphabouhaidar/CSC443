@@ -14,6 +14,7 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +31,7 @@ session_start();
 
         <!-- NAVIGATION BAR AT THE TOP OF THE PAGE -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-blue">
-            <a class="navbar-brand" href="#"> <img src="../img/lebanon-flag-icon.png" alt="icon" id="icon-navbar"> </a>
+            <a class="navbar-brand" href="../index.php"> <img src="../img/lebanon-flag-icon.png" alt="icon" id="icon-navbar"> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,16 +52,11 @@ session_start();
                 </li>
   
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span> </a>
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
                 </li>
   
                 <li class="nav-item">
                   <a class="nav-link" href="../about/about.php">About</a>
-                </li>
-                
-  
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
               </ul>
   
