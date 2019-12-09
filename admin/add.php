@@ -31,7 +31,7 @@ else
         echo "Error: Employee email already exists.";
     }
 
-    /*Email is not correct*/
+    /*Email doesn't exist*/
     else
     {
         $sql="INSERT INTO Employees(emp_email, emp_first, emp_last, password, address, emp_phone, position) 

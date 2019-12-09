@@ -1,10 +1,15 @@
 <?php
 session_start();
 require("../database/connection.php");
-// if(!isset($_SESSION["admin"]))
-if(false)
+if(!isset($_SESSION["admin"]))
 {
-    echo "not an admin!";
+    echo "Access not authorized.";
+    exit();
+}
+
+else if($_SESSION["admin"] == false)
+{
+    echo "Access not authorized.";
     exit();
 }
 ?>
@@ -36,100 +41,306 @@ if(false)
 
 </head>
 <body>
-
-
-
-    <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-						<h2>Manage <b>Employees</b></h2>
-					</div>
-					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-						<a href="#deleteEmployeesModal" id="deleteChecked" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
-					</div>
-                </div>
-            </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Email</th>
-						<th>Address</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <!-- Body of the table, gets results from the Database and displays them in here -->
-                <tbody>
-                    <?php
-                        $sql = "SELECT e.emp_first, e.emp_last, e.emp_email, e.address, e.emp_phone, e.position FROM Employees e";
-                        $result=$connection->query($sql);
-                        $entries = $result->num_rows;
-
-                        if($entries > 0) /*if the query returns a non-empty result*/
-                        {
-                            while($row = $result->fetch_assoc())
-                            {
-                                ?>
-                                <tr>
-                                    <td>
-                                        <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                            <label for="checkbox1"></label>
-                                        </span>
-                                    </td>
-                                    
-                                    <td class="name"><?= $row['emp_first']." ".$row["emp_last"]; ?></td>
-                                    <td class="position"><?= $row["position"]; ?></td>
-                                    <td class="email"><?= $row["emp_email"]; ?></td>
-                                    <td class="address"><?= $row["address"]; ?></td>
-                                    <td class="phone"><?= $row["emp_phone"]; ?></td>
-
-                                    <td>
-                                        <a href="#" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="#" class="delete" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                        }
-                    ?>
-                </tbody>
-            </table>
-
-			<div class="clearfix">
-                <div class="hint-text" id="showingResults">Showing <b><?php if($entries>20) echo "20"; else echo "$entries"; ?></b> out of <b><?php echo "$entries";?></b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    
-                    <?php 
-                    $pages = $entries/20; 
-                    $count = 2;
-                    while($pages > 1)
-                    {
-                    ?>
-                    <li class="page-item"><a href="#" class="page-link"><?= "$count" ?></a></li>
-                    <?php 
-                        $pages--;
-                        $count++;
-                    }
-                    ?>
-                    <li class="page-item <?php if($entries/20 <= 1) echo "disabled"?>"><a href="#">Next</a></li>
-                </ul>
-            </div>
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">UNNAMED PROJECT 443</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
         </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="../img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name"><?= $_SESSION['first_name'] ?> 
+            <strong><?= $_SESSION['last_name'] ?></strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+        <div>
+          <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+              <span class="badge badge-pill badge-warning">New</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Dashboard 1
+                    <span class="badge badge-pill badge-success">Pro</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 2</a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-shopping-cart"></i>
+              <span>E-commerce</span>
+              <span class="badge badge-pill badge-danger">3</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Products
+
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Orders</a>
+                </li>
+                <li>
+                  <a href="#">Credit cart</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="far fa-gem"></i>
+              <span>Components</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">General</a>
+                </li>
+                <li>
+                  <a href="#">Panels</a>
+                </li>
+                <li>
+                  <a href="#">Tables</a>
+                </li>
+                <li>
+                  <a href="#">Icons</a>
+                </li>
+                <li>
+                  <a href="#">Forms</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-chart-line"></i>
+              <span>Charts</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Pie chart</a>
+                </li>
+                <li>
+                  <a href="#">Line chart</a>
+                </li>
+                <li>
+                  <a href="#">Bar chart</a>
+                </li>
+                <li>
+                  <a href="#">Histogram</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-globe"></i>
+              <span>Maps</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Google maps</a>
+                </li>
+                <li>
+                  <a href="#">Open street map</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Documentation</span>
+              <span class="badge badge-pill badge-primary">Beta</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-folder"></i>
+              <span>Examples</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
     </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell"></i>
+        <span class="badge badge-pill badge-warning notification">3</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope"></i>
+        <span class="badge badge-pill badge-success notification">7</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-cog"></i>
+        <span class="badge-sonar"></span>
+      </a>
+      <a href="#">
+        <i class="fa fa-power-off"></i>
+      </a>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+
+            <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h2>Manage <b>Employees</b></h2>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                                    <a href="#deleteEmployeesModal" id="deleteChecked" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" id="selectAll">
+                                            <label for="selectAll"></label>
+                                        </span>
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <!-- Body of the table, gets results from the Database and displays them in here -->
+                            <tbody>
+                                <?php
+                                    $sql = "SELECT e.emp_first, e.emp_last, e.emp_email, e.address, e.emp_phone, e.position FROM Employees e";
+                                    $result=$connection->query($sql);
+                                    $entries = $result->num_rows;
+            
+                                    if($entries > 0) /*if the query returns a non-empty result*/
+                                    {
+                                        while($row = $result->fetch_assoc())
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td>
+                                                    <span class="custom-checkbox">
+                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                        <label for="checkbox1"></label>
+                                                    </span>
+                                                </td>
+                                                
+                                                <td class="name"><?= $row['emp_first']." ".$row["emp_last"]; ?></td>
+                                                <td class="position"><?= $row["position"]; ?></td>
+                                                <td class="email"><?= $row["emp_email"]; ?></td>
+                                                <td class="address"><?= $row["address"]; ?></td>
+                                                <td class="phone"><?= $row["emp_phone"]; ?></td>
+            
+                                                <td>
+                                                    <a href="#" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                    <a href="#" class="delete" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+            
+                        <div class="clearfix">
+                            <div class="hint-text" id="showingResults">Showing <b><?php if($entries>20) echo "20"; else echo "$entries"; ?></b> out of <b><?php echo "$entries";?></b> entries</div>
+                            <ul class="pagination">
+                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                
+                                <?php 
+                                $pages = $entries/20; 
+                                $count = 2;
+                                while($pages > 1)
+                                {
+                                ?>
+                                <li class="page-item"><a href="#" class="page-link"><?= "$count" ?></a></li>
+                                <?php 
+                                    $pages--;
+                                    $count++;
+                                }
+                                ?>
+                                <li class="page-item <?php if($entries/20 <= 1) echo "disabled"?>"><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+      
+    </div>
+
+  </main>
+
+
 
 	<!-- Add modal HTML -->
 	<div id="addEmployeeModal" class="modal">

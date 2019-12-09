@@ -97,7 +97,7 @@ session_start();
                 else
                 { ?>
             <form class="form-inline my-2 my-lg-0">
-                 <a href="login/login.html"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
+                 <a href="login/index.html"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
             </form>
                   <?php } ?>
           </div>

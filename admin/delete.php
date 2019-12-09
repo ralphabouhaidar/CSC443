@@ -22,8 +22,8 @@ else
 
     if($result->num_rows > 0) /*if the query returns a non-empty result*/
     {
-        // $sql = "DELETE FROM Employees WHERE emp_email=\"".$email."\"";
-        // $result=$connection->query($sql);
+        $sql = "DELETE FROM Employees WHERE emp_email=\"".$email."\"";
+        $result=$connection->query($sql);
         echo "success";
     }
 

@@ -1,13 +1,12 @@
-<!-- NOTE: SHOULD ALSO SET SESSION VARIABLE FOR NAME -->
-
 <?php
+
 session_start();
 require("../database/connection.php");
 
 if(!isset($_POST["email"]) || !isset($_POST["password"]))
 {
     /*if the two POST fields are not set, return an error*/
-    echo "error in fields";
+    echo "Error!";
     exit();
 }
 
@@ -22,7 +21,7 @@ else
     $pass = addslashes($pass);
 
     /*query that searches for user with matching email, and returns table containing password*/
-    $sql = "SELECT c.password FROM Customers c WHERE username=\"".$email."\"";
+    $sql = "SELECT * FROM Customers c WHERE email=\"".$email."\"";
     $result=$connection->query($sql);
 
     if($result->num_rows > 0) /*if the query returns a non-empty result*/
@@ -32,18 +31,50 @@ else
         /*Verify password against hashed password, if method returns true, user is signed in*/
         if (password_verify($pass, $row["password"]))
         {
-            echo "true";  
+            $_SESSION["admin"] = false;
             $_SESSION["email"] = $email;
+            $_SESSION["first_name"] = $row["first_name"];
+            $_SESSION["last_name"] = $row["last_name"];
+            $_SESSION["cid"] = $row["customer_id"];
+
+            echo "Success!";  
         }
             
         /*Password is not correct*/
         else
-            echo "falsepass";
+            echo "Wrong password!1";
     }
 
-    /*Email is not correct*/
+    /*Not in Customers table? Check employees table!*/
     else
-        echo "falseemail";
+    {
+        $sql = "SELECT * FROM Employees e WHERE emp_email=\"".$email."\"";
+        $result=$connection->query($sql);
+
+        if($result->num_rows > 0) /*if the query returns a non-empty result*/
+        {
+            $row = $result->fetch_assoc();
+
+            /*Verify password against hashed password, if method returns true, user is signed in*/
+            if (password_verify($pass, $row["password"]))
+            {
+                $_SESSION["admin"] = true;
+                $_SESSION["email"] = $email;
+                $_SESSION["first_name"] = $row["emp_first"];
+                $_SESSION["last_name"] = $row["emp_last"];
+                // $_SESSION["eid"] = $row["employee_id"];
+                
+                echo "Successfully signed in as admin!";
+            }
+                
+            /*Password is not correct*/
+            else
+                echo "Wrong password!2";
+        }
+
+        else
+            echo "Wrong email!";
+    }
     
 }
 ?>

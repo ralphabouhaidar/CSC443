@@ -83,7 +83,7 @@
           <div class="card-body">
             <h5 class="card-title text-center">Sign Up</h5>
 
-            <form class="form-signin" method="POST" action="registration.php">
+            <form class="form-signin" method="POST" action="registration.php" novalidate>
 
               <div class="form-label-group">
                 <!--Email address-->
@@ -113,6 +113,12 @@
                 <input class="form-control alphaonly" type="text" placeholder="Last Name" id="inputLast" name="lastname"
                   required>
                 <label for="inputLast">Last Name*</label>
+              </div>
+
+              <!--Address-->
+              <div class="form-label-group">
+                <input class="form-control alphaonly" type="text" placeholder="Address" id="inputAddress" name="address">
+                <label for="inputAddress">Address*</label>
               </div>
               <br>
 

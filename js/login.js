@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     /*If signup button is clicked, redirect to signup page*/
     $("#signup_btn").click(function(){
-        window.location.replace("../signup/signup.html")
+        window.location.replace("../signup/index.html")
     });
 
     /*If go back button is clicked, redirect to home page */
@@ -11,7 +11,9 @@ $(document).ready(function(){
     });
     
     /*If sign in button is clicked, the email and password are verified through an AJAX Post request */
-    $("#signin_btn").click(function(){
+    $("#form").submit(function(e){
+
+        e.preventDefault();
 
         var user = $("#inputEmail").val();
         var pass = $("#inputPassword").val();
@@ -23,24 +25,24 @@ $(document).ready(function(){
                             
                             function(data, status){
                                 console.log(data);
-                                    if(data == "falsepass")
+                                    if(data == "Successfully signed in as admin!")
                                     {
-                                        alert("Wrong password");
+                                        window.location.replace("../admin/index.php");
                                     }
 
-                                    else if(data == "falseemail")
+                                    else if(data == "Success!")
                                     {
-                                        alert("No email with this bla bla");
+                                        window.location.replace("../index.php");
                                     }
 
-                                    else if(data == "true")
+                                    else if(data == "Error!")
                                     {
-                                        alert("Sucess!");
+                                        alert("Error!");
                                     }
 
                                     else
                                     {
-                                        alert("error");
+                                        alert("Wrong email or password.");
                                     }
                                 }
                 );
