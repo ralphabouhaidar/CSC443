@@ -48,7 +48,7 @@ else
     /*Not in Customers table? Check employees table!*/
     else
     {
-        $sql = "SELECT * FROM Employees e WHERE emp_email=\"".$email."\"";
+        $sql = "SELECT * FROM Employees e WHERE e.emp_email=\"".$email."\"";
         $result=$connection->query($sql);
 
         if($result->num_rows > 0) /*if the query returns a non-empty result*/
@@ -62,7 +62,7 @@ else
                 $_SESSION["email"] = $email;
                 $_SESSION["first_name"] = $row["emp_first"];
                 $_SESSION["last_name"] = $row["emp_last"];
-                // $_SESSION["eid"] = $row["employee_id"];
+                $_SESSION["eid"] = $row["emp-id"];
                 
                 echo "Successfully signed in as admin!";
             }

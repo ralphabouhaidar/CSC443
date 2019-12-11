@@ -37,7 +37,11 @@ else if($_SESSION["admin"] == false)
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="../css/crud.css">
-    <script src="../js/crud.js"></script>
+
+    <!-- JS files-->
+    <script type="text/javascript" src="../js/crud/crud.js"></script>
+    <script type="text/javascript" src="../js/Chart.min.js"></script>
+    <script type="text/javascript" src="../js/crud/app.js"></script>
 
 </head>
 <body>
@@ -48,7 +52,7 @@ else if($_SESSION["admin"] == false)
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">UNNAMED PROJECT 443</a>
+        <a href="../logout.php">LOG OUT</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -70,6 +74,7 @@ else if($_SESSION["admin"] == false)
         </div>
       </div>
       <!-- sidebar-header  -->
+
       <div class="sidebar-search">
         <div>
           <div class="input-group">
@@ -83,32 +88,18 @@ else if($_SESSION["admin"] == false)
         </div>
       </div>
       <!-- sidebar-search  -->
+
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
             <span>General</span>
           </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-tachometer-alt"></i>
-              <span>Dashboard</span>
+          <li class="sidebar-item">
+            <a href="index.php">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
               <span class="badge badge-pill badge-warning">New</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Dashboard 1
-                    <span class="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 3</a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
@@ -135,46 +126,18 @@ else if($_SESSION["admin"] == false)
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="far fa-gem"></i>
-              <span>Components</span>
+              <span>Manage</span>
             </a>
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">General</a>
+                  <a href="employees/employees.php">Employees</a>
                 </li>
                 <li>
-                  <a href="#">Panels</a>
+                  <a href="customers/customers.php">Customers</a>
                 </li>
                 <li>
-                  <a href="#">Tables</a>
-                </li>
-                <li>
-                  <a href="#">Icons</a>
-                </li>
-                <li>
-                  <a href="#">Forms</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-chart-line"></i>
-              <span>Charts</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Pie chart</a>
-                </li>
-                <li>
-                  <a href="#">Line chart</a>
-                </li>
-                <li>
-                  <a href="#">Bar chart</a>
-                </li>
-                <li>
-                  <a href="#">Histogram</a>
+                  <a href="trails/trails.php">Trails</a>
                 </li>
               </ul>
             </div>
@@ -244,243 +207,67 @@ else if($_SESSION["admin"] == false)
   <main class="page-content">
     <div class="container-fluid">
 
-            <div class="container">
-                    <div class="table-wrapper">
-                        <div class="table-title">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h2>Manage <b>Employees</b></h2>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                                    <a href="#deleteEmployeesModal" id="deleteChecked" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
-                                </div>
-                            </div>
-                        </div>
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <span class="custom-checkbox">
-                                            <input type="checkbox" id="selectAll">
-                                            <label for="selectAll"></label>
-                                        </span>
-                                    </th>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Phone</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <!-- Body of the table, gets results from the Database and displays them in here -->
-                            <tbody>
-                                <?php
-                                    $sql = "SELECT e.emp_first, e.emp_last, e.emp_email, e.address, e.emp_phone, e.position FROM Employees e";
-                                    $result=$connection->query($sql);
-                                    $entries = $result->num_rows;
-            
-                                    if($entries > 0) /*if the query returns a non-empty result*/
-                                    {
-                                        while($row = $result->fetch_assoc())
-                                        {
-                                            ?>
-                                            <tr>
-                                                <td>
-                                                    <span class="custom-checkbox">
-                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                        <label for="checkbox1"></label>
-                                                    </span>
-                                                </td>
-                                                
-                                                <td class="name"><?= $row['emp_first']." ".$row["emp_last"]; ?></td>
-                                                <td class="position"><?= $row["position"]; ?></td>
-                                                <td class="email"><?= $row["emp_email"]; ?></td>
-                                                <td class="address"><?= $row["address"]; ?></td>
-                                                <td class="phone"><?= $row["emp_phone"]; ?></td>
-            
-                                                <td>
-                                                    <a href="#" class="edit" data-toggle="modal" data-target="#editEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                    <a href="#" class="delete" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-            
-                        <div class="clearfix">
-                            <div class="hint-text" id="showingResults">Showing <b><?php if($entries>20) echo "20"; else echo "$entries"; ?></b> out of <b><?php echo "$entries";?></b> entries</div>
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a href="#">Previous</a></li>
-                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                                
-                                <?php 
-                                $pages = $entries/20; 
-                                $count = 2;
-                                while($pages > 1)
-                                {
-                                ?>
-                                <li class="page-item"><a href="#" class="page-link"><?= "$count" ?></a></li>
-                                <?php 
-                                    $pages--;
-                                    $count++;
-                                }
-                                ?>
-                                <li class="page-item <?php if($entries/20 <= 1) echo "disabled"?>"><a href="#">Next</a></li>
-                            </ul>
-                        </div>
-                    </div>
+    <div class="counter">
+    <div class="container">
+        <div class="row">
+
+        <!-- TO GET EMPLOYEE COUNT -->
+        <?php 
+            $sql1 = "SELECT * FROM Employees";
+            $result1 = $connection->query($sql1);
+            $employees = $result1->num_rows;
+        ?>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="employees">
+                    <p class="counter-count"><?= $employees; ?></p>
+                    <p class="employee-p">Employees</p>
                 </div>
-      
+            </div>
+
+         <!-- TO GET CUSTOMER COUNT -->
+         <?php 
+            $sql2 = "SELECT * FROM Customers";
+            $result2 = $connection->query($sql2);
+            $customers = $result2->num_rows;
+         ?>
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                  <div class="customer">
+                      <p class="counter-count"><?= $customers ?></p>
+                      <p class="customer-p">Customers</p>
+                  </div>
+              </div>
+
+          <!-- TO GET CUSTOMER COUNT -->
+         <?php 
+            $sql3 = "SELECT * FROM Reservations";
+            $result3 = $connection->query($sql3);
+            $reservations = $result3->num_rows;
+         ?>
+
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                  <div class="order">
+                      <p class="counter-count"><?= $reservations ?></p>
+                      <p class="order-p">Reservations</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+        <!-- Graph for salaries -->
+        <div id="chart-container">
+            <canvas id="mycanvas1"></canvas>
+        </div>
+
+        <!-- Graph for salaries -->
+        <div id="chart-container">
+            <canvas id="mycanvas2"></canvas>
+        </div>
+           
     </div>
 
   </main>
-
-
-
-	<!-- Add modal HTML -->
-	<div id="addEmployeeModal" class="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Add Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>First name</label>
-							<input type="text" class="form-control firstInput" required>
-                        </div>
-
-                        <div class="form-group">
-							<label>Last name</label>
-							<input type="text" class="form-control lastInput" required>
-                        </div>
-
-                        <div class="form-group">
-							<label>Position</label>
-							<input type="text" class="form-control positionInput" required>
-                        </div>
-
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control emailInput" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control addressInput" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control phoneInput" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button id="addThisEmployee" type="button" class="btn btn-success">Add</button>
-					</div>
-				</form>
-			</div>
-		</div>
-    </div>
-    
-	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>First name</label>
-							<input type="text" class="form-control firstInput" required>
-                        </div>
-                        
-                        <div class="form-group">
-							<label>Last name</label>
-							<input type="text" class="form-control lastInput" required>
-                        </div>
-                        
-                        <div class="form-group">
-							<label>Position</label>
-							<input type="text" class="form-control positionInput" required>
-                        </div>
-                        
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control emailInput" required>
-                        </div>
-                        
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control addressInput" required></textarea>
-                        </div>
-                        
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control phoneInput" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button id="editThisEmployee" type="button" class="btn btn-info">Save</button>
-					</div>
-				</form>
-			</div>
-		</div>
-    </div>
-    
-	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<button id="deleteThisEmployee" type="button" class="btn btn-danger">Delete</button>
-					</div>
-				</form>
-			</div>
-		</div>
-    </div>
-
-    <!-- Delete Modal HTML -->
-	<div id="deleteEmployeesModal" class="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Delete Employee</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<p>Are you sure you want to delete these Records?</p>
-						<p class="text-warning"><small>This action cannot be undone.</small></p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<button id="deleteSelectedEmployees" type="button" class="btn btn-danger">Delete</button>
-					</div>
-				</form>
-			</div>
-		</div>
-    </div>
 
 </body>
 </html>                                		                            

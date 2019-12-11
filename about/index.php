@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+    session_start();
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,11 +43,7 @@
                 </li>
   
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Tours</a>
-                </li>
-  
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Guides</a>
+                  <a class="nav-link" href="../tours/index.php">Tours</a>
                 </li>
   
                 <li class="nav-item">
@@ -51,7 +51,7 @@
                 </li>
   
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About</a>
+                  <a class="nav-link disabled" href="index.php" tabindex="-1" aria-disabled="true">About</a>
                 </li>
         
               </ul>
@@ -70,12 +70,25 @@
                   <ul class="navbar-nav ml-sm-0">   
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?= '$_SESSION["name"]' ?>
+                    <?= $_SESSION["first_name"] ?>
                   </a>
                   
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
+                    <?php 
+                      if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true)
+                      {
+                    ?>
+                        <a class="dropdown-item" href="../admin/index.php">Admin page</a>
+                    <?php
+                      }
+                      else
+                      {
+                    ?>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    <?php
+                      }
+                    ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Log out</a>
                   </div>
@@ -87,7 +100,7 @@
                   else
                   { ?>
               <form class="form-inline my-2 my-lg-0">
-                    <a href="../login/login.html"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
+                    <a href="../login/index.php"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
               </form>
                     <?php } ?>
             </div>
@@ -226,8 +239,8 @@
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="../img/youssef-abboud.jpeg" alt="card image"></p>
-                                    <h4 class="card-title">Youssef Abboud</h4>
+                                    <p><img class=" img-fluid" src="../img/jad-sakr.jpeg" alt="card image"></p>
+                                    <h4 class="card-title">Jad Sakr</h4>
                                     <p class="card-text">Software Developer.</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
@@ -236,10 +249,10 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Youssef Abboud</h4>
+                                    <h4 class="card-title">Jad Sakr</h4>
                                     <p class="card-text">Youssef is one of our amazing developers that helped build this website! 
-                                        After graduating from Harvard in 2018 with a degree in Computer Science, Youssef joined our team
-                                        as a Software Developer, making sure everything is suitable for you!
+                                        After graduating from Harvard in 2018 with a degree in Computer Science, Jad contacted HighKings
+                                        to take on the job, making sur everything is well handled every step of the way!
                                     </p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">

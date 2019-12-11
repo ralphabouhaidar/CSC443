@@ -38,19 +38,15 @@ session_start();
                 </li>
   
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Tours</a>
+                  <a class="nav-link" href="../tours/index.php">Tours</a>
                 </li>
   
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Guides</a>
+                 <a class="nav-link disabled" href="index.php" tabindex="-1" aria-disabled="true">Contact Us</a>
                 </li>
   
                 <li class="nav-item">
-                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
-                </li>
-  
-                <li class="nav-item">
-                  <a class="nav-link" href="../about/about.php">About</a>
+                  <a class="nav-link" href="../about/index.php">About</a>
                 </li>
               </ul>
   
@@ -68,14 +64,27 @@ session_start();
                   <ul class="navbar-nav ml-sm-0">   
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?= '$_SESSION["name"]' ?>
+                    <?= $_SESSION["first_name"] ?>
                   </a>
                   
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
+                    <?php 
+                      if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true)
+                      {
+                    ?>
+                        <a class="dropdown-item" href="../admin/index.php">Admin page</a>
+                    <?php
+                      }
+                      else
+                      {
+                    ?>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    <?php
+                      }
+                    ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Log out</a>
+                    <a class="dropdown-item" href="../logout.php">Log out</a>
                   </div>
                   </li>
                   </ul>
@@ -85,7 +94,7 @@ session_start();
                   else
                   { ?>
               <form class="form-inline my-2 my-lg-0">
-                   <a href="../login/login.html"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
+                   <a href="../login/index.php"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
               </form>
                     <?php } ?>
             </div>
@@ -102,7 +111,7 @@ session_start();
 <div class="row  ">
 <div class="col-sm-6">
 
-        <div class="card text-center mx-auto" style="width:60%">
+        <div class="card text-center mx-auto" style="width:60%;  background-color: rgba(255, 255, 255, 0); border: none">
                 <img class="card-img-top cardimg1 mx-auto" src="../img/call.png" alt="Card image">
                 <div class="card-body">
                 <h4 class="card-title" style="text-align: center; color: black;">Contact Us by phone</h4>
@@ -120,7 +129,7 @@ session_start();
 
 
 <div class="col-sm-6">
-        <div class="card text-center mx-auto" style="width:60%;">
+        <div class="card text-center mx-auto" style="width:60%;  background-color: rgba(255, 255, 255, 0); border: none">
                 <img class="card-img-top cardimg2 mx-auto" src="../img/email.png" alt="Card image">
                 <div class="card-body">
                 <h4 class="card-title" style="text-align: center; color: black;">Send Us a message</h4>
@@ -159,7 +168,7 @@ session_start();
 
         <!-- Content -->
         <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Unnamed Project 443</h5>
-        <p>Unnamed Project 443 strives to make your stay in Lebanon most memorable. For more info about what we do, click <a href="#">here.</a></p>
+        <p>Unnamed Project 443 strives to make your stay in Lebanon most memorable. For more info about what we do, click <a href="../about/index.php">here.</a></p>
 
       </div>
       <!-- Grid column -->

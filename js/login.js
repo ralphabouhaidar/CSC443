@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     /*If signup button is clicked, redirect to signup page*/
     $("#signup_btn").click(function(){
-        window.location.replace("../signup/index.html")
+        window.location.replace("../signup/index.php")
     });
 
     /*If go back button is clicked, redirect to home page */

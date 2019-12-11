@@ -2,7 +2,7 @@
 $servername = "localhost"; 
 $username = "root"; 
 $password = null; 
-$dbname = "Highkings1"; 
+$dbname = "Final_project_copy"; 
   
 // checking connection 
 $connection = new mysqli($servername, $username, $password, $dbname); 
@@ -11,6 +11,7 @@ $connection = new mysqli($servername, $username, $password, $dbname);
 if ($connection->connect_error) { 
     die("Connection failed: " . $conn->connect_error); 
 } 
+
 //Close the connection 
 //$connection->close(); 
 

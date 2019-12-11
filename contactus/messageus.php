@@ -44,15 +44,11 @@ session_start();
                 </li>
   
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Tours</a>
+                  <a class="nav-link" href="../tours/index.php">Tours</a>
                 </li>
   
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Guides</a>
-                </li>
-  
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+                  <a class="nav-link disabled" href="index.php" tabindex="-1" aria-disabled="true">Contact Us</a>
                 </li>
   
                 <li class="nav-item">
@@ -74,12 +70,25 @@ session_start();
                   <ul class="navbar-nav ml-sm-0">   
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <?= '$_SESSION["name"]' ?>
+                    <?= $_SESSION["first_name"] ?>
                   </a>
                   
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
+                    <?php 
+                      if(isset($_SESSION["admin"]) && $_SESSION["admin"] == true)
+                      {
+                    ?>
+                        <a class="dropdown-item" href="../admin/index.php">Admin page</a>
+                    <?php
+                      }
+                      else
+                      {
+                    ?>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    <?php
+                      }
+                    ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Log out</a>
                   </div>
@@ -91,7 +100,7 @@ session_start();
                   else
                   { ?>
               <form class="form-inline my-2 my-lg-0">
-                    <a href="../login/login.html"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
+                    <a href="../login/login.php"> <button type="button" class="btn btn-success" id="login_bt" style="margin-left: 10px">Log in</button> </a>
               </form>
                     <?php } ?>
             </div>
@@ -109,45 +118,52 @@ session_start();
                           <fieldset>
                               <legend class="text-center header">Contact us</legend>
       
-                              <div class="form-group">
-                                  <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                              <div class="form-group row">
+                                  <span class="col-md-2 col-md-offset-1 text-center"><i class="fa fa-user bigicon"></i></span>
                                   <div class="col-md-8">
                                       <input id="fname" name="name" type="text" placeholder="First Name" class="form-control">
                                   </div>
                               </div>
-                              <div class="form-group">
-                                  <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                              <br/>
+
+                              <div class="form-group row">
+                                  <span class="col-md-2 col-md-offset-1 text-center"><i class="fa fa-user bigicon"></i></span>
                                   <div class="col-md-8">
                                       <input id="lname" name="name" type="text" placeholder="Last Name" class="form-control">
                                   </div>
                               </div>
+                              <br/>
       
-                              <div class="form-group">
-                                  <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                              <div class="form-group row">
+                                  <span class="col-md-2 col-md-offset-1 text-center"><i class="fa fa-envelope bigicon"></i></span>
                                   <div class="col-md-8">
                                       <input id="email" name="email" type="text" placeholder="Email Address" class="form-control">
                                   </div>
                               </div>
+                              <br/>
       
-                              <div class="form-group">
-                                  <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                              <div class="form-group row">
+                                  <span class="col-md-2 col-md-offset-1 text-center"><i class="fa fa-phone-square bigicon"></i></span>
                                   <div class="col-md-8">
                                       <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control">
                                   </div>
                               </div>
+                              <br/>
       
-                              <div class="form-group">
-                                  <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                              <div class="form-group row">
+                                  <span class="col-md-2 col-md-offset-1 text-center"><i class="fas fa-pen-square bigicon"></i></span>
                                   <div class="col-md-8">
-                                      <textarea class="form-control" id="message" name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7"></textarea>
+                                      <textarea class="form-control" id="message" name="message" placeholder="Enter your message for us here. We will get back to you within 2 business days." rows="7"></textarea>
                                   </div>
                               </div>
+                              <br/>
       
-                              <div class="form-group">
+                              <div class="form-group row">
                                   <div class="col-md-12 text-center">
                                       <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                                   </div>
                               </div>
+                              <br/>
                           </fieldset>
                       </form>
                   </div>
@@ -170,7 +186,7 @@ session_start();
   
           <!-- Content -->
           <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Unnamed Project 443</h5>
-          <p>Unnamed Project 443 strives to make your stay in Lebanon most memorable. For more info about what we do, click <a href="#">here.</a></p>
+          <p>Unnamed Project 443 strives to make your stay in Lebanon most memorable. For more info about what we do, click <a href="../about/index.php">here.</a></p>
   
         </div>
         <!-- Grid column -->
