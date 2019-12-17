@@ -33,6 +33,9 @@
 
 <body>
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=700485047143983&autoLogAppEvents=1"></script>
+
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue">
         <a class="navbar-brand" href="../index.php"> <img src="../img/lebanon-flag-icon.png" alt="icon" id="icon-navbar"> </a>
@@ -105,13 +108,9 @@
                   <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" id="signin_btn">Sign in</button>
                   <hr class="my-4">
 
-                  <!--Sign in using google-->
-                  <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
-                      class="fab fa-google mr-2"></i> Sign in with Google</button>
-
                   <!--Sign in using Facebook-->
-                  <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                      class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+                  <a href="fblogin.php"><button class="btn btn-lg btn-facebook btn-block text-uppercase" type="button"><i
+                      class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button></a>
 
                   <br>
                   <!--Sign up button-->

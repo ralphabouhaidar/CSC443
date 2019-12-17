@@ -215,10 +215,18 @@
                                                 <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                                             </form>
                                         </div>
+
+                                        
                                     </div>
                                 </div>
                             </div>
+                            <br>
+
+                            <div class="map-responsive">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13220.450540146405!2d35.72756988169682!3d34.06662678810762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f455e1e2066f5%3A0x8420ce6a4f46c4e4!2sYahchouch!5e0!3m2!1sen!2slb!4v1576604908264!5m2!1sen!2slb" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                            </div>
                         </div>
+                        
                     </div>
 
                 <?php

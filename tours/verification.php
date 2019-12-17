@@ -2,10 +2,16 @@
     session_start();
     require("../database/connection.php");
 
-    if(!isset($_SESSION["cid"]) || !isset($_GET["trip_id"]))
+    if(!isset($_GET["trip_id"]))
     {
         echo "Error";
         header("Location: ../404/index.php");
+    }
+
+    if(!isset($_SESSION["cid"]))
+    {
+        echo "Not signed in";
+        header("Location: ../login/index.php");
     }
 
     else
