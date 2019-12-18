@@ -114,14 +114,14 @@ session_start();
           <div class="row">
               <div class="col-md-12 text-center">
                   <div class="well well-sm">
-                      <form class="form-horizontal" method="post">
+                      <form class="form-horizontal" method="post" action="send.php">
                           <fieldset>
                               <legend class="text-center header">Contact us</legend>
       
                               <div class="form-group row">
                                   <span class="col-md-2 col-md-offset-1 text-center"><i class="fa fa-user bigicon"></i></span>
                                   <div class="col-md-8">
-                                      <input id="fname" name="name" type="text" placeholder="First Name" class="form-control">
+                                      <input id="fname" name="fname" type="text" placeholder="First Name" class="form-control">
                                   </div>
                               </div>
                               <br/>
@@ -129,7 +129,7 @@ session_start();
                               <div class="form-group row">
                                   <span class="col-md-2 col-md-offset-1 text-center"><i class="fa fa-user bigicon"></i></span>
                                   <div class="col-md-8">
-                                      <input id="lname" name="name" type="text" placeholder="Last Name" class="form-control">
+                                      <input id="lname" name="lname" type="text" placeholder="Last Name" class="form-control">
                                   </div>
                               </div>
                               <br/>

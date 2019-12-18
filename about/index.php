@@ -240,7 +240,7 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img class=" img-fluid" src="../img/jad-sakr.jpeg" alt="card image"></p>
-                                    <h4 class="card-title">Jad Sakr</h4>
+                                    <h4 class="card-title">Youssef Abboud</h4>
                                     <p class="card-text">Software Developer.</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
@@ -249,10 +249,10 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Jad Sakr</h4>
+                                    <h4 class="card-title">Youssef Abboud</h4>
                                     <p class="card-text">Youssef is one of our amazing developers that helped build this website! 
-                                        After graduating from Harvard in 2018 with a degree in Computer Science, Jad contacted HighKings
-                                        to take on the job, making sur everything is well handled every step of the way!
+                                        After graduating from Harvard in 2018 with a degree in Computer Science, Youssef contacted HighKings
+                                        to take on the job, making sure everything is well handled every step of the way!
                                     </p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
