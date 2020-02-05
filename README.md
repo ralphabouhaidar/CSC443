@@ -3,7 +3,7 @@
 *Unnamed Project 443* is a website designed for a local tour guide agency (in Lebanon). It's a project for the CSC443 class in Fall 2019.
 
 ## Project status
-Work in progress.
+Deployed/Presented.
 
 ## Description
 This website allows you to plan for your holiday with the click of a button! All the best activities, historical sites, trails, resorts are listed here for you to pick from. (TO BE CONTINUED)
